@@ -44,11 +44,9 @@ const leadSchema = new mongoose.Schema({
         enum: ['new', 'contacted', 'converted', 'rejected'],
         default: 'new'
     },
-    notes: String,
-    consentForUpdates: {
-        type: Boolean,
-        required: true,
-        default: false
+    notes: {
+        type: String,
+        trim: true
     }
 });
 
