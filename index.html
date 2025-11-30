@@ -704,7 +704,7 @@
                 submitBtn.textContent = 'Submitting...';
                 
                 // Send data to backend
-                const response = await fetch('https://alltheclasses-seo.onrender.com', {
+                const response = await fetch('https://alltheclasses-seo.onrender.com/api/leads', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
