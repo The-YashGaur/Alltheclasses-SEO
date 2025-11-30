@@ -10,6 +10,11 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// Root route (fixes "Cannot GET /")
+app.get("/", (req, res) => {
+    res.send("Backend is running successfully!");
+});
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
@@ -28,7 +33,7 @@ app.post('/api/leads', async (req, res) => {
             return res.status(400).json({ error: 'Full name, phone number, exam type, and current class are required' });
         }
 
-        // Create new lead with all fields
+        // Create new lead
         const lead = new Lead({
             fullName,
             phone,
@@ -48,7 +53,7 @@ app.post('/api/leads', async (req, res) => {
     }
 });
 
-// Get all leads (for admin purposes)
+// Get all leads
 app.get('/api/leads', async (req, res) => {
     try {
         const leads = await Lead.find().sort({ submissionDate: -1 });
