@@ -7,7 +7,16 @@ const Lead = require('./models/lead');
 const app = express();
 
 // Middleware
-app.use(cors());
+app.use(cors({
+    origin: [
+        "https://classes.alltheclasses.com",   // your frontend
+        "http://localhost:5000",               // optional for local testing
+        "http://localhost:5500"
+    ],
+    methods: ["GET", "POST"],
+    credentials: true
+}));
+
 app.use(express.json());
 
 // Root route (fixes "Cannot GET /")
